@@ -18,6 +18,8 @@ Install the required packages using
 
 ```pip install fastapi uvicorn sqlalchemy psycopg2-binary docker```
 
+[You must also have Docker installed](https://docs.docker.com/engine/install/)
+
 Run the program with ```uvicorn main:app```
 
 It will run on ```localhost:8000``` by default
