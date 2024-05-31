@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 import { python } from '@codemirror/lang-python';
-// import 'codemirror/theme/material.css';
 import './App.css';
 
+interface execution_output_response {
+  output: string
+}
 function App() {
   const [code, setCode] = useState<string>('');
   const [output, setOutput] = useState<string>('');
@@ -15,9 +17,17 @@ function App() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ code }),
+    }).catch(e => {
+      setOutput("Error executing the above program")
     });
-    const result = await response.json();
-    setOutput(result.output);
+    if (response) {
+      try {
+        const result: execution_output_response = await response.json();
+        setOutput(result.output);
+      } catch (e) {
+        setOutput("Error executing the above program")
+      }
+    }
   };
 
   const submitCode = async () => {
