@@ -12,3 +12,12 @@ The program attempts to reduce any damages from maliciously passed code by
 
 1. Using docker to run the passed in code in a container to ensure that the actual server's hardware is not affected
 2. Allowing code to only run a specific amount of time (5 seconds in this case). If the allowed execution time is exceeded, it is treated as invalid code
+
+# Running the backend
+Install the required packages using
+
+```pip install fastapi uvicorn sqlalchemy psycopg2-binary docker```
+
+Run the program with ```uvicorn main:app```
+
+It will run on ```localhost:8000``` by default
